@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toten Interativo - By Carlos Sales</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+
+    <style>
+        /* CSS para centralizar a div */
+        .centralizada {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            /* Altura total da viewport */
+        }
+
+        .conteudo {
+            width: 50%;
+            /* Largura da div */
+            text-align: center;
+        }
+
+        #rodape {
+            position: fixed;
+            /* Fixa a div em relação à janela do navegador */
+            right: 0;
+            /* Alinha a div à direita */
+            bottom: 0;
+            /* Alinha a div à parte inferior */
+            text-align: right;
+            font-size: 12px;
+            padding: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="divMenu" class="container centralizada">
+        <div class="conteudo">
+            <div class="card border-success mb-3" style="max-width: 20rem;">
+                <div class="card-header">Para o nosso Toten Interativo funcionar vamos precisar usar o Microfone.</div>
+                <div class="card-body">
+                    <p class="card-text">Clique em AVANÇAR e em seguida em PERMITIR.</p>
+                </div>
+            </div>
+            <div class="d-grid gap-2">
+                <button type="button" class="btn btn-lg btn-success" onclick="getDevicesMic();">Avançar</button>
+                <button type="button" class="btn btn-lg btn-secondary"
+                    onclick="cancelDevicePrompt();">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="rodape">
+        <a class="text-primary-emphasis"
+            href="https://drive.google.com/file/d/1rUniur23FGfaUExHuGEeIP70JmA_3JTz/view?usp=drive_link">
+            Saiba mais
+        </a>
+    </div>
+
+    <script>
+
+        function getDevicesMic() {
+            navigator.mediaDevices.getUserMedia({
+                audio: true
+            })
+                .then(function (stream) {
+                    window.location.href = "startPublic.html";
+                })
+                .catch(function (error) {
+                    if (error.message == "Requested device not found") {
+                        alert(error.message);
+                        window.location.href = "index.html";
+                    } else if (error.message == "Permission denied") {
+                        alert(error.message);
+                        window.location.href = "index.html";
+                    } else {
+                        alert(error.message);
+                        window.location.href = "index.html";
+                    }
+                });
+        }
+
+        function cancelDevicePrompt() {
+            window.location.href = "index.html";
+        }
+
+    </script>
+
+</body>
+
+</html>

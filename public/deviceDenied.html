@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toten Interativo - By Carlos Sales</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/fontawesome.css" />
+    <link rel="stylesheet" href="css/brands.css" />
+    <link rel="stylesheet" href="css/solid.css" />
+
+    <style>
+        /* CSS para centralizar a div */
+        .centralizada {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            /* Altura total da viewport */
+        }
+
+        .conteudo {
+            width: 50%;
+            /* Largura da div */
+            text-align: center;
+        }
+
+        #rodape {
+            position: fixed;
+            /* Fixa a div em relação à janela do navegador */
+            right: 0;
+            /* Alinha a div à direita */
+            bottom: 0;
+            /* Alinha a div à parte inferior */
+            text-align: right;
+            font-size: 12px;
+            padding: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="divMenu" class="container centralizada">
+        <div class="conteudo">
+
+            <div id="DeviceDeniedHeader">
+                <i class="fa fa-4x fa-microphone-slash"></i>
+                <h4>O nosso Toten Interativo funcionará melhor utilizando o Microfone e a Câmera.</h4>
+                <h4>Porém parece que nos foi bloqueado o acesso a estes recursos.</h4>
+                <h3>Para desbloquear siga o passo a passo descrito abaixo. Em seguida reinicie o aplicativo.</h3>
+            </div>
+
+            <div id="DeviceDeniedBrowsers">
+                <h3>No Google Chrome:</h3>
+                <ul id="lista">
+                    <li>Abra o navegador Google Chrome</li>
+                    <li>No canto superior direito, clique Definições.</li>
+                    <li>Clique em Privacidade e segurança - Definições do site - Microfone.</li>
+                    <li>Excluia o nosso site da lista de bloqueados.</li>
+                </ul>
+            </div>
+
+            <button type="button" class="btn btn-secondary" onclick="cancelDevicePrompt();">Voltar <i
+                    class="fa fa-ban"></i></button>
+
+
+
+        </div>
+    </div>
+
+    <div id="rodape">
+        <a class="text-primary-emphasis"
+            href="https://drive.google.com/file/d/1rUniur23FGfaUExHuGEeIP70JmA_3JTz/view?usp=drive_link">
+            Saiba mais
+        </a>
+    </div>
+
+
+    <script>
+
+        function cancelDevicePrompt() {
+            window.location.href = "index.html";
+        }
+
+    </script>
+
+
+</body>
+
+</html>

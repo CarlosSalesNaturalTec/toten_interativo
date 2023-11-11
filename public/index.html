@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toten Interativo - By Carlos Sales</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+
+    <style>
+        /* CSS para centralizar a div */
+        .centralizada {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            /* Altura total da viewport */
+        }
+
+        .conteudo {
+            width: 50%;
+            /* Largura da div */
+            text-align: center;
+        }
+
+        #rodape {
+            position: fixed;
+            /* Fixa a div em relação à janela do navegador */
+            right: 0;
+            /* Alinha a div à direita */
+            bottom: 0;
+            /* Alinha a div à parte inferior */
+            text-align: right;
+            font-size: 12px;
+            padding: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="divMenu" class="container centralizada">
+        <div class="conteudo">
+            <div onclick="startPublic();" class="card border-success mb-3" style="max-width: 20rem;">
+                <div class="card-header">Bem vindo</div>
+                <div class="card-body">
+                    <p class="card-text">Conheça o nosso território</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="rodape">
+        <a class="text-primary-emphasis"
+            href="https://drive.google.com/file/d/1rUniur23FGfaUExHuGEeIP70JmA_3JTz/view?usp=drive_link">
+            Saiba mais
+        </a>
+    </div>
+
+    <script>
+
+        var permissionMic;
+        getPermissionDevices();
+
+        async function getPermissionDevices() {
+            navigator.permissions
+                .query({ name: 'microphone' })
+                .then(function (result) { permissionMic = result.state; })
+                .catch(function (error) { permissionMic = "notFound"; });
+        }
+
+        function startPublic() {
+            if (!permissionMic) {
+                alert("Aguardando retorno sobre permissões de uso do microfone. Tente novamente...");
+                return;
+            } else {
+                if (permissionMic == 'granted') {
+                    openFullscreen();
+                    window.location.href = "startPublic.html";
+                } else if (permissionMic == 'prompt') {
+                    window.location.href = "devicePrompt.html";
+                } else if (permissionMic == 'denied') {
+                    window.location.href = "deviceDenied.html";
+                }
+            }
+        }
+
+        
+
+    </script>
+
+</body>
+
+</html>
