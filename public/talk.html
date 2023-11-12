@@ -48,14 +48,18 @@
         <div class="conteudo">
             <img id="divImageImg" src="image/wavesOff.gif" alt="Imagem de ondas sonoras"><br>
             <br>
-            <div class="d-grid gap-2">
-                <button type="button" class="btn btn-success" onclick="startSpeechRecognition('get_answer')">Responder</button>
+            <div id="divButtons" class="d-grid gap-2" style="visibility: hidden;">
+                <button type="button" class="btn btn-success" onclick="speech()">Responder</button>
                 <button type="button" class="btn btn-outline-dark" onclick="cancel()">Voltar</button>
             </div>
+            <br>
+            <div id="output"></div>
         </div>
     </div>
 
     <script>
+
+        const areaMensagens = document.getElementById("output");
 
         //#region - Síntese de Voz e Reconhecimento de fala 
         const synth = window.speechSynthesis;
@@ -74,31 +78,43 @@
         recognition.interimResults = false; // resultados parciais
         recognition.lang = "pt-BR";
 
+        recognition.onstart = function (e) {
+            console.log("Reconhecimento de fala INICIADO");
+        };
+
+        recognition.onsoundstart = function (e) {
+            console.log("Som detectado!");
+        };
+
         recognition.onresult = function (e) {
-            let resultIndex = e.resultIndex
-            resultRecognition = e.results[resultIndex][0].transcript;
-            console.log('Reconhecimento de Voz: ');
-            console.log(resultRecognition);
+            document.getElementById("divButtons").style.visibility = "visible";
+            var resultIndex = e.resultIndex
+            exibirmensagem(e.results[resultIndex][0].transcript);
         };
 
-        recognition.onend = function (e) {            
-            if (!resultRecognition) { console.log('nao houve reconhecimento de voz') }
+        recognition.onspeechend = function (e) {
+            console.log("onspeechend");
         };
 
+        recognition.onerror = function (e) {
+            console.log('onError', e);
+            exibirmensagem("Ocorreu um erro : " + e.error);
+        };
+
+        recognition.onend = function (e) {
+            console.log("onend");
+        };
         //#endregion
-
-        $(document).ready(function () {
-            interactionMsg = messages.input_name;
-            //speak();
-        });
 
         function speak() {
             const utterThis = new SpeechSynthesisUtterance(interactionMsg);
             utterThis.onstart = function () {
                 document.getElementById("divImageImg").src = "image/wavesOn.gif";
+                document.getElementById("divButtons").style.visibility = "hidden";
             };
             utterThis.onend = function () {
                 document.getElementById("divImageImg").src = "image/wavesOff.gif";
+                document.getElementById("divButtons").style.visibility = "visible";
             };
             utterThis.pitch = pitch;
             utterThis.rate = rate;
@@ -109,6 +125,11 @@
             synth.cancel();
         }
 
+        function speech() {
+            document.getElementById("divButtons").style.visibility = "hidden";
+            startSpeechRecognition('');
+        }
+
         function startSpeechRecognition(param) {
             // param = eventual ação a ser executada após recebimento de audio/resposta
             speakStop();
@@ -117,10 +138,19 @@
             recognition.start();
         }
 
+        function exibirmensagem(mensagem) {
+            areaMensagens.innerHTML += mensagem + "</br>";
+        }
 
         function cancel() {
+            speakStop();
             window.location.href = "menu.html";
         }
+
+        $(document).ready(function () {
+            interactionMsg = messages.input_name;
+            speak();
+        });
 
     </script>
 
