@@ -29,6 +29,13 @@ app.get('/', async (req, res) => {
   });       
 });
 
+// Conversação 
+app.get('/talk', async (req, res) => {
+      
+});
+
+
+
 app.listen(port, () => {
   console.log("toten_interativo_ON");
 })

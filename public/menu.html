@@ -5,12 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Toten Interativo - By Carlos Sales</title>
+    <title>Menu - Toten Interativo</title>
 
     <link rel="stylesheet" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" href="css/fontawesome.css" />
-    <link rel="stylesheet" href="css/brands.css" />
-    <link rel="stylesheet" href="css/solid.css" />
 
     <style>
         /* CSS para centralizar a div */
@@ -48,10 +45,9 @@
     <div id="divMenu" class="container centralizada">
         <div class="conteudo">
             <div class="d-grid gap-2">
-                <button type="button" class="btn btn-lg btn-success" onclick="">Opção 1</button>
-                <button type="button" class="btn btn-lg btn-success" onclick="">Opção 2</button>
-                <button type="button" class="btn btn-lg btn-secondary"
-                    onclick="cancel();">Voltar</button>
+                <button type="button" class="btn btn-success" onclick="talk();">Conversar</button>
+                <button type="button" class="btn btn-primary" onclick="">Imagens</button>
+                <button type="button" class="btn btn-outline-dark" onclick="cancel()">Voltar</button>
             </div>
         </div>
     </div>
@@ -60,6 +56,10 @@
 
         function cancel() {
             window.location.href = "index.html";
+        }
+
+        function talk() {
+            window.location.href = "talk.html";
         }
         
     </script>

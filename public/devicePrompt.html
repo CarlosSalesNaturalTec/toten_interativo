@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Toten Interativo - By Carlos Sales</title>
+    <title>Permissões - Toten Interativo</title>
 
     <link rel="stylesheet" href="css/bootstrap.min.css" />
 
@@ -44,25 +44,17 @@
 
     <div id="divMenu" class="container centralizada">
         <div class="conteudo">
-            <div class="card border-success mb-3" style="max-width: 20rem;">
+            <div class="card border-primary mb-3" style="max-width: 20rem;">
                 <div class="card-header">Para o nosso Toten Interativo funcionar vamos precisar usar o Microfone.</div>
                 <div class="card-body">
                     <p class="card-text">Clique em AVANÇAR e em seguida em PERMITIR.</p>
                 </div>
             </div>
             <div class="d-grid gap-2">
-                <button type="button" class="btn btn-lg btn-success" onclick="getDevicesMic();">Avançar</button>
-                <button type="button" class="btn btn-lg btn-secondary"
-                    onclick="cancelDevicePrompt();">Cancelar</button>
+                <button type="button" class="btn btn-success" onclick="getDevicesMic();">Avançar</button>
+                <button type="button" class="btn btn-outline-dark" onclick="cancelDevicePrompt();">Voltar</button>
             </div>
         </div>
-    </div>
-
-    <div id="rodape">
-        <a class="text-primary-emphasis"
-            href="https://drive.google.com/file/d/1rUniur23FGfaUExHuGEeIP70JmA_3JTz/view?usp=drive_link">
-            Saiba mais
-        </a>
     </div>
 
     <script>
@@ -72,7 +64,7 @@
                 audio: true
             })
                 .then(function (stream) {
-                    window.location.href = "startPublic.html";
+                    window.location.href = "menu.html";
                 })
                 .catch(function (error) {
                     if (error.message == "Requested device not found") {

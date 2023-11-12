@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversar - Toten Interativo</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script type="text/javascript" src="src/config.js"></script>
+
+    <style>
+        /* CSS para centralizar a div */
+        .centralizada {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            /* Altura total da viewport */
+        }
+
+        .conteudo {
+            width: 50%;
+            /* Largura da div */
+            text-align: center;
+        }
+
+        #rodape {
+            position: fixed;
+            /* Fixa a div em relação à janela do navegador */
+            right: 0;
+            /* Alinha a div à direita */
+            bottom: 0;
+            /* Alinha a div à parte inferior */
+            text-align: right;
+            font-size: 12px;
+            padding: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="divMenu" class="container centralizada">
+        <div class="conteudo">
+            <img id="divImageImg" src="image/wavesOff.gif" alt="Imagem de ondas sonoras"><br>
+            <br>
+            <div class="d-grid gap-2">
+                <button type="button" class="btn btn-success" onclick="startSpeechRecognition('get_answer')">Responder</button>
+                <button type="button" class="btn btn-outline-dark" onclick="cancel()">Voltar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        //#region - Síntese de Voz e Reconhecimento de fala 
+        const synth = window.speechSynthesis;
+        var interactionMsg = "";
+        var pitch = messages.pitch; // entonação de voz padrão
+        var rate = messages.rate;   // velocidade de fala padrão
+
+        var resultRecognition;
+        var recognitionAction;
+        var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
+        if (!SpeechRecognition) {
+            alert("Recurso de reconhecimento de fala não disponível neste Browser. Verifique permissões ou utilize outro navegador");
+        }
+        recognition = new SpeechRecognition();
+        recognition.continuous = false;      // Reconhecimento contínuo em loop
+        recognition.interimResults = false; // resultados parciais
+        recognition.lang = "pt-BR";
+
+        recognition.onresult = function (e) {
+            let resultIndex = e.resultIndex
+            resultRecognition = e.results[resultIndex][0].transcript;
+            console.log('Reconhecimento de Voz: ');
+            console.log(resultRecognition);
+        };
+
+        recognition.onend = function (e) {            
+            if (!resultRecognition) { console.log('nao houve reconhecimento de voz') }
+        };
+
+        //#endregion
+
+        $(document).ready(function () {
+            interactionMsg = messages.input_name;
+            //speak();
+        });
+
+        function speak() {
+            const utterThis = new SpeechSynthesisUtterance(interactionMsg);
+            utterThis.onstart = function () {
+                document.getElementById("divImageImg").src = "image/wavesOn.gif";
+            };
+            utterThis.onend = function () {
+                document.getElementById("divImageImg").src = "image/wavesOff.gif";
+            };
+            utterThis.pitch = pitch;
+            utterThis.rate = rate;
+            synth.speak(utterThis);
+        }
+
+        function speakStop() {
+            synth.cancel();
+        }
+
+        function startSpeechRecognition(param) {
+            // param = eventual ação a ser executada após recebimento de audio/resposta
+            speakStop();
+            recognitionAction = param;
+            resultRecognition = "";
+            recognition.start();
+        }
+
+
+        function cancel() {
+            window.location.href = "menu.html";
+        }
+
+    </script>
+
+</body>
+
+</html>

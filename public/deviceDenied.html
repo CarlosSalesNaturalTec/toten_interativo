@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Toten Interativo - By Carlos Sales</title>
+    <title>Permissão Negada - Toten Interativo</title>
 
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/fontawesome.css" />
@@ -39,47 +39,43 @@
             font-size: 12px;
             padding: 10px;
         }
+
+        .icon {
+            color: red;
+        }
     </style>
 
 </head>
 
 <body>
 
-    <div id="divMenu" class="container centralizada">
-        <div class="conteudo">
+    <div>
 
-            <div id="DeviceDeniedHeader">
-                <i class="fa fa-4x fa-microphone-slash"></i>
-                <h4>O nosso Toten Interativo funcionará melhor utilizando o Microfone e a Câmera.</h4>
-                <h4>Porém parece que nos foi bloqueado o acesso a estes recursos.</h4>
-                <h3>Para desbloquear siga o passo a passo descrito abaixo. Em seguida reinicie o aplicativo.</h3>
-            </div>
-
-            <div id="DeviceDeniedBrowsers">
-                <h3>No Google Chrome:</h3>
-                <ul id="lista">
-                    <li>Abra o navegador Google Chrome</li>
-                    <li>No canto superior direito, clique Definições.</li>
-                    <li>Clique em Privacidade e segurança - Definições do site - Microfone.</li>
-                    <li>Excluia o nosso site da lista de bloqueados.</li>
-                </ul>
-            </div>
-
-            <button type="button" class="btn btn-secondary" onclick="cancelDevicePrompt();">Voltar <i
-                    class="fa fa-ban"></i></button>
-
-
-
+        <br>
+        <div style="text-align: center;">
+            <i class="icon fa fa-4x fa-microphone-slash"></i>
         </div>
-    </div>
 
-    <div id="rodape">
-        <a class="text-primary-emphasis"
-            href="https://drive.google.com/file/d/1rUniur23FGfaUExHuGEeIP70JmA_3JTz/view?usp=drive_link">
-            Saiba mais
-        </a>
-    </div>
+        <div style="padding: 10px;">
+            <p>Este aplicativo utiliza o Microfone do dispositivo!</p>
+            <p>Porém parece que nos foi bloqueado o acesso a este recurso.</p>
+            <p>Para desbloquear siga o passo a passo descrito abaixo. Em seguida reinicie o aplicativo.</p>
 
+            <p>No Google Chrome:</p>
+            <ul id="lista">
+                <li>Abra o navegador Google Chrome</li>
+                <li>No canto superior direito, clique Definições.</li>
+                <li>Clique em Privacidade e segurança - Definições do site - Microfone.</li>
+                <li>Excluia o nosso site da lista de bloqueados.</li>
+            </ul>
+        </div>
+
+        <div style="text-align: center;">
+            <button type="button" class="btn btn-outline-dark" onclick="cancelDevicePrompt();">Voltar</button>
+        </div>
+        
+
+    </div>
 
     <script>
 

@@ -44,7 +44,7 @@
 
     <div id="divMenu" class="container centralizada">
         <div class="conteudo">
-            <div onclick="startPublic();" class="card border-success mb-3" style="max-width: 20rem;">
+            <div onclick="startPublic();" class="card border-primary mb-3" style="max-width: 20rem;">
                 <div class="card-header">Bem vindo</div>
                 <div class="card-body">
                     <p class="card-text">Conheça o nosso território</p>
@@ -78,8 +78,7 @@
                 return;
             } else {
                 if (permissionMic == 'granted') {
-                    openFullscreen();
-                    window.location.href = "startPublic.html";
+                    window.location.href = "menu.html";
                 } else if (permissionMic == 'prompt') {
                     window.location.href = "devicePrompt.html";
                 } else if (permissionMic == 'denied') {
@@ -87,8 +86,6 @@
                 }
             }
         }
-
-        
 
     </script>
 
