@@ -109,8 +109,7 @@
 
         recognition.onerror = function (e) {
             if (e.error == "no-speech") {
-                interactionMsg = messages.repeat;
-                speak();
+                speak(messages.repeat);
             } else {
                 console.log('onError', e);
                 showMsgToUser("Erro ao captar audio! Mais detalhes estão descritos no Console.");
@@ -119,8 +118,8 @@
         };
         //#endregion
 
-        function speak() {
-            const utterThis = new SpeechSynthesisUtterance(interactionMsg);
+        function speak(msg) {
+            const utterThis = new SpeechSynthesisUtterance(msg);
             utterThis.onstart = function () {
                 document.getElementById("divImageImg").src = "image/wavesOn.gif";
                 document.getElementById("divButtons").style.visibility = "hidden";
@@ -167,7 +166,9 @@
             xhr.open('GET', url, true);
             xhr.onload = function () {
                 if (xhr.status === 200) {
-                    showMsgToUser(xhr.response);
+                    let serverResponse = xhr.response;
+                    showMsgToUser(serverResponse);
+                    speak(serverResponse);
                 } else {
                     showMsgToUser('Não foi possível enviar mensagem.');
                 }
@@ -188,8 +189,7 @@
         }
 
         $(document).ready(function () {
-            interactionMsg = messages.input_name;
-            speak();
+            speak(messages.input_name);
         });
 
     </script>

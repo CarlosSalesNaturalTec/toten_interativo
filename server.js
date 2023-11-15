@@ -34,7 +34,7 @@ app.get('/', async (req, res) => {
 // chatgpt config
 const apiKey = process.env.OPENAI_API_KEY;
 const engineModel = 'gpt-3.5-turbo';
-const temperature = 1.5;
+const temperature = 0.7;
 const role = "user";
 const urlAPI = 'https://api.openai.com/v1/chat/completions';
 
