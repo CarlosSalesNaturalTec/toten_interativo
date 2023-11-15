@@ -4,6 +4,8 @@ AI based Chatbot
 Bibliotecas utiizadas
 
 npm install express
+npm install dotenv
+npm install axios
 
 
 para testes :

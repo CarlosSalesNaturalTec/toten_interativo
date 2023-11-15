@@ -2,6 +2,7 @@
 const express = require('express');
 const url = require('url');
 const axios = require('axios');
+require('dotenv').config();
 
 // Initializing the express and port number
 const app = express();
@@ -12,10 +13,6 @@ app.use(express.static('public'));
 
 // Calling the express.json() method for parsing
 app.use(express.json({ limit: "2mb" }));
-
-// chatgpt config
-const apiKey = process.env.OPENAI_API_KEY;
-var prompt = '';
 
 // html server
 app.get('/', async (req, res) => {
@@ -34,12 +31,55 @@ app.get('/', async (req, res) => {
   });       
 });
 
-// Conversação 
+// chatgpt config
+const apiKey = process.env.OPENAI_API_KEY;
+const engineModel = 'gpt-3.5-turbo';
+const temperature = 1.5;
+const role = "user";
+const urlAPI = 'https://api.openai.com/v1/chat/completions';
+
+// Rota de Conversação 
 app.get('/talk', async (req, res) => {
-  var q = url.parse(req.url, true).query;
-  var txt = "A mensagem que chegou no servidor foi: " + q.msg ;
-  return res.end(txt);
+
+  //obtem mensagem enviada pelo usuário
+  let q = url.parse(req.url, true).query;    
+  let prompt = q.msg ;
+
+  //obtem retorno da API
+  const response = await sendPrompt(prompt);
+
+  //envia resposta para o usuário
+  return res.end(response);
 });
+
+// requisição HTTP para API do ChatGPT
+async function sendPrompt(prompt) {
+
+  const headers = {
+      'Authorization': `Bearer ${apiKey}`,
+      'Content-Type': 'application/json'
+  };
+
+  const body = {
+      model: engineModel,
+      messages: [
+        {
+          role: role,
+          content: prompt,
+        }
+      ],
+      temperature: temperature
+  };
+
+  try {
+      const response = await axios.post(urlAPI, body, { headers });      
+      let msg = response.data.choices[0].message.content;
+      return msg;
+  } catch (error) {
+      console.error('Erro ao solicitar a API:', error);
+      return "Ocorreu um erro ao obter resposta da API";
+  }
+}
 
 app.listen(port, () => {
   console.log("toten_interativo_ON");
