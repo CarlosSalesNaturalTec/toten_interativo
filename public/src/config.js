@@ -4,6 +4,8 @@ const messages = {
     "pitch": 2,     // Pitch = Tom da fala, mais grave ou mais agudo. Valor Default
     "rate": 2,    // Rate = Velocidade da fala. Valor Default
 
-    "input_name": "  Olá. Seja bem vindo. Por favor informe o seu nome.",
+    //"input_name": "  Olá. Seja bem vindo. Por favor informe o seu nome.",
+    "input_name": "Diga seu nome.",
+    "repeat": "  Eu não escutei direito. Por favor repita.",
 
 };

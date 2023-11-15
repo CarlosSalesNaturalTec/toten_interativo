@@ -1,6 +1,7 @@
 // Importing modules
 const express = require('express');
 const url = require('url');
+const axios = require('axios');
 
 // Initializing the express and port number
 const app = express();
@@ -11,6 +12,10 @@ app.use(express.static('public'));
 
 // Calling the express.json() method for parsing
 app.use(express.json({ limit: "2mb" }));
+
+// chatgpt config
+const apiKey = process.env.OPENAI_API_KEY;
+var prompt = '';
 
 // html server
 app.get('/', async (req, res) => {
@@ -31,10 +36,10 @@ app.get('/', async (req, res) => {
 
 // Conversação 
 app.get('/talk', async (req, res) => {
-      
+  var q = url.parse(req.url, true).query;
+  var txt = "A mensagem que chegou no servidor foi: " + q.msg ;
+  return res.end(txt);
 });
-
-
 
 app.listen(port, () => {
   console.log("toten_interativo_ON");
