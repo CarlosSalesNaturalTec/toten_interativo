@@ -82,5 +82,5 @@ async function sendPrompt(prompt) {
 }
 
 app.listen(port, () => {
-  console.log("toten_interativo_ON");
+  console.log("toten_interativo");
 })
