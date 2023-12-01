@@ -45,23 +45,55 @@
     <div id="divMenu" class="container centralizada">
         <div class="conteudo">
             <div class="d-grid gap-2">
-                <button type="button" class="btn btn-success" onclick="talk();">Conversar</button>
-                <button type="button" class="btn btn-primary" onclick="">Imagens</button>
-                <button type="button" class="btn btn-outline-dark" onclick="cancel()">Voltar</button>
+                <div class="card-header"><img src="image/logo.png" alt="Logomarca Turismo na Guerreira">        </div>
+                <div class="card-body">
+                    <p class="card-text">Turismo Cultural de Base Comunitária</p>
+                    <br>
+                </div>
+                <button type="button" class="btn btn-outline-success" onclick="talk();">Desafio</button>
+                <button type="button" class="btn btn-outline-primary" onclick="showImages();">Belezas Naturais</button>
+                <button type="button" class="btn btn-outline-primary" onclick="showComunity();">Comunidade</button>
+                <!-- <button type="button" class="btn btn-outline-primary" onclick="showVideos();">Videos</button>
+                <button type="button" class="btn btn-outline-primary" onclick="showInsta();">Instagram</button> -->
+                <br>
+                <button type="button" class="btn btn-outline-success" onclick="schedule();">Fazer uma Reserva</button>
             </div>
         </div>
     </div>
 
-    <script>
+    <div id="rodape">
+        <a class="text-primary-emphasis"
+            href="https://drive.google.com/file/d/1rUniur23FGfaUExHuGEeIP70JmA_3JTz/view?usp=drive_link">
+            Saiba mais
+        </a>
+    </div>
 
-        function cancel() {
-            window.location.href = "index.html";
-        }
+    <script>
 
         function talk() {
             window.location.href = "talk.html";
         }
         
+        function showImages() {
+            window.location.href = "https://photos.app.goo.gl/UHjDZ6g3gNbygEQJ7";
+        }
+
+        function showVideos() {
+            window.location.href = "http://www.youtube.com/@Turismo.Guerreira";
+        }
+
+        function showInsta() {
+            window.location.href = "https://www.instagram.com/turismo.guerreira/";
+        }
+
+        function schedule() {
+            window.location.href = "https://forms.gle/YQvo3yq9Rn2YtMsQ9";
+        }
+
+        function showComunity() {
+            window.location.href = "https://www.instagram.com/inovacomunidade.zeferina/";
+        }
+
     </script>
 
 </body>
