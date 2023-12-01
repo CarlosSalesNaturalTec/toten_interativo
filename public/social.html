@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Toten Interativo - By Carlos Sales</title>
+    <title>Redes Sociais - Toten Interativo</title>
 
     <link rel="stylesheet" href="css/bootstrap.min.css" />
 
@@ -44,11 +44,16 @@
 
     <div id="divMenu" class="container centralizada">
         <div class="conteudo">
-            <div onclick="startPublic();" class="card border-primary mb-3" style="max-width: 20rem;">
-                <div class="card-header"><img src="image/logo2.png" alt="Logomarca Turismo na Guerreira">        </div>
+            <div class="d-grid gap-2">
+                <div class="card-header"><img src="image/logo.png" alt="Logomarca Turismo na Guerreira">        </div>
                 <div class="card-body">
-                    <p class="card-text">INICIAR</p>
+                    <p class="card-text">Redes Sociais</p>
+                    <br>
                 </div>
+                <button type="button" class="btn btn-outline-success" onclick="showInsta();">Instagram</button>
+                <button type="button" class="btn btn-outline-primary" onclick="showVideos();">Youtube</button>
+                <br>
+                <button type="button" class="btn btn-outline-dark" onclick="cancel()">Voltar</button>
             </div>
         </div>
     </div>
@@ -62,30 +67,19 @@
 
     <script>
 
-        var permissionMic;
-        getPermissionDevices();
 
-        async function getPermissionDevices() {
-            navigator.permissions
-                .query({ name: 'microphone' })
-                .then(function (result) { permissionMic = result.state; })
-                .catch(function (error) { permissionMic = "notFound"; });
+        function showVideos() {
+            window.location.href = "http://www.youtube.com/@Turismo.Guerreira";
         }
 
-        function startPublic() {
-            if (!permissionMic) {
-                alert("Aguardando retorno sobre permissões de uso do microfone. Tente novamente...");
-                return;
-            } else {
-                if (permissionMic == 'granted') {
-                    window.location.href = "menu.html";
-                } else if (permissionMic == 'prompt') {
-                    window.location.href = "devicePrompt.html";
-                } else if (permissionMic == 'denied') {
-                    window.location.href = "deviceDenied.html";
-                }
-            }
+        function showInsta() {
+            window.location.href = "https://www.instagram.com/turismo.guerreira/";
         }
+
+        function cancel() {
+            window.location.href = "menu.html";
+        }
+
 
     </script>
 
