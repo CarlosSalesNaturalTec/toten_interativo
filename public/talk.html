@@ -48,7 +48,7 @@
         <div class="conteudo">
             <div class="card-header"><img src="image/logo.png" alt="Logomarca Turismo na Guerreira">        </div>
             <br>
-            <img id="divImageImg" src="image/wavesOff.gif" alt="Imagem de ondas sonoras"><br>
+            <img id="divImageImg" src="image/ondasOff.gif" alt="Imagem de ondas sonoras"><br>
             <br>
             <div id="divButtons" class="d-grid gap-2" style="visibility: hidden;">
                 <button type="button" class="btn btn-success" onclick="speech()">Falar</button>
@@ -123,11 +123,11 @@
         function speak(msg) {
             const utterThis = new SpeechSynthesisUtterance(msg);
             utterThis.onstart = function () {
-                document.getElementById("divImageImg").src = "image/wavesOn.gif";
+                document.getElementById("divImageImg").src = "image/ondasOn.gif";
                 document.getElementById("divButtons").style.visibility = "hidden";
             };
             utterThis.onend = function () {
-                document.getElementById("divImageImg").src = "image/wavesOff.gif";
+                document.getElementById("divImageImg").src = "image/ondasOff.gif";
                 document.getElementById("divButtons").style.visibility = "visible";
             };
             utterThis.pitch = pitch;
